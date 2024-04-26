@@ -30,13 +30,20 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     const database = client.db("ttravolDB");
+    const tourismSpotsCollection = database.collection("tourismSpots");
     const usersCollection = database.collection("users");
-    
-    app.get("/users", async (req, res) => {
-        const result = await usersCollection.find({}).toArray();
-        res.send(result);
-    })
 
+  
+
+
+
+
+
+
+
+
+
+    // users api version
     app.post("/users", async (req, res) => {
         const user = req.body;
         const result = await usersCollection.insertOne(user);
