@@ -33,13 +33,17 @@ async function run() {
     const tourismSpotsCollection = database.collection("tourismSpots");
     const usersCollection = database.collection("users");
 
-  
+    // tourismSpots api version
+    app.post("/tourismSpots", async (req, res) => {
+        const tourismSpot = req.body;
+        const result = await tourismSpotsCollection.insertOne(tourismSpot);
+        res.send(result);
+    })
 
-
-
-
-
-
+    app.get("/tourismSpots", async (req, res) => {
+        const tourismSpots = await tourismSpotsCollection.find({}).toArray();
+        res.send(tourismSpots);
+    })
 
 
 
