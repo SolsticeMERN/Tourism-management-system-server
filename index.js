@@ -45,6 +45,11 @@ async function run() {
       res.send(tourismSpots);
     });
 
+    app.get("/tourismSpots/country/:countryName", async (req, res) => {
+        const countryName = req.params.countryName;
+        const tourismSpots = await tourismSpotsCollection.find({ country_Name: countryName }).toArray();
+        res.send(tourismSpots);
+    });
     app.get("/countries", async (req, res) => {
         const countries = await CountriesCollection.find({}).toArray();
         res.send(countries);
