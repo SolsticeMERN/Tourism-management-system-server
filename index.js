@@ -1,5 +1,5 @@
 const express = require('express');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express();
 const cors = require('cors');
 const port= process.env.PORT || 3000;
@@ -48,6 +48,11 @@ async function run() {
     app.get("/tourismSpots/:id", async (req, res) => {
         const id = req.params.id;
         const tourismSpot = await tourismSpotsCollection.findOne({ _id: new ObjectId(id) });
+        res.send(tourismSpot);
+    })
+
+    app.get("/myTourismSpots/:email", async (req, res) => {
+        const tourismSpot = await tourismSpotsCollection.find({email: req.params.email}).toArray();
         res.send(tourismSpot);
     })
 
