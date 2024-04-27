@@ -45,6 +45,12 @@ async function run() {
         res.send(tourismSpots);
     })
 
+    app.get("/tourismSpots/:id", async (req, res) => {
+        const id = req.params.id;
+        const tourismSpot = await tourismSpotsCollection.findOne({ _id: new ObjectId(id) });
+        res.send(tourismSpot);
+    })
+
 
 
     // users api version
